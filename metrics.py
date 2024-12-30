@@ -36,3 +36,18 @@ def value_at_risk(returns, confidence_level=0.95):
     
     # Calculate the VaR
     return np.percentile(returns, 100 * (1 - confidence_level))
+
+def drawdown(returns):
+    cum_ret = returns.add(1).cumprod()
+    running_max = cum_ret.cummax()
+    drawdown = (cum_ret - running_max) / running_max
+    return drawdown
+
+def max_drawdown(returns):
+    return drawdown(returns).min()
+
+def sharpe_ratio(returns, risk_free_rate=0):
+    return (returns.mean() - risk_free_rate) / returns.std()
+
+def sortino_ratio(returns, risk_free_rate=0):
+    return (returns.mean() - risk_free_rate) / returns[returns < 0].std()
