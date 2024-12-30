@@ -24,3 +24,16 @@ def plot_returns(returns, benchmark=None):
     plt.legend()
     plt.ylabel('Cumulative returns')
     plt.show()
+    
+    def value_at_risk(returns, confidence_level=0.95):
+        """
+        This function calculates the Value at Risk (VaR) of the returns.
+
+        Args:
+            returns (_type_): pd.Series
+            confidence_level (float, optional):float. Defaults to 0.95.
+        """
+        
+        # Calculate the VaR
+        return np.percentile(returns, 100 * (1 - confidence_level))
+    
