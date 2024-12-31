@@ -22,7 +22,10 @@ def check_return_cleanliness(returns):
         print("Index is not sorted. Sorting the index.")
         return returns
     
-def asset_score(returns, window):
+    returns.index = pd.to_datetime(returns.index)
+    return returns
+    
+def asset_score(returns, benchmark_returns=None, window=252):
     """This function calculates the asset score of the returns.
 
     Args:
@@ -35,10 +38,10 @@ def asset_score(returns, window):
     
     # Check the cleanliness of the returns
     returns = check_return_cleanliness(returns)
+    benchmark_returns = check_return_cleanliness(benchmark_returns)
     
-    # Calculate the asset score
-    
-    ### TBD: Implement the asset score calculation
-    asset_score = returns.rolling(window).mean() / returns.rolling(window).std()
-    
-    return asset_score
+    if benchmark_returns:    
+       # Calculate the asset score
+       pass
+        
+    return asset_score_
