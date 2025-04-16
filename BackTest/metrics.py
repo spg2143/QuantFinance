@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
-def plot_returns(returns, benchmark=None):
+def plot_returns(returns, benchmark=None,  **kwargs):
     """
     Plots the cumulative returns of the algorithm against a benchmark.
 
@@ -18,7 +18,7 @@ def plot_returns(returns, benchmark=None):
     returns = (returns + 1).cumprod()
 
     plt.figure(figsize=(16, 8))
-    returns.plot(label='Algorithm', color='blue')
+    returns.plot(label='Algorithm', **kwargs)
     if benchmark is not None:
         benchmark.plot(label='Benchmark', color='red')
     plt.legend()
@@ -36,6 +36,9 @@ def value_at_risk(returns, confidence_level=0.95):
     
     # Calculate the VaR
     return np.percentile(returns, 100 * (1 - confidence_level))
+
+def momentum_signal(returns):
+    pass
 
 def drawdown(returns):
     cum_ret = returns.add(1).cumprod()

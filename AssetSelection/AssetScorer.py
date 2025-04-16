@@ -43,5 +43,3 @@ def asset_score(returns, benchmark_returns=None, window=252):
     if benchmark_returns:    
        # Calculate the asset score
        pass
-        
-    return asset_score_
